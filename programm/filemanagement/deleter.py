@@ -18,6 +18,7 @@ def movetoold():
     Die Funktion movetoold verschiebt Ordner aus dem Input in den old. Dabei ist es Wichtig das die Dateien älter als 30
     Tage sind um verschoben werden zu können.
     """
+    Maximales_Alter = 35 # in Tage
     try:
         log.addlog("delter.py movetoold funktion läuft!", "DEBUG")
         while True:
@@ -31,7 +32,7 @@ def movetoold():
                 for i in listworking:
                     j = i[0:10].split("-")
                     j = int(j[0]) * 365 + int(j[1]) * 31 + int(j[2])
-                    if actual_time - 35 > j:
+                    if actual_time - Maximales_Alter > j:
                         move_file(paths.get_working_paths()[4] + "/" + i, paths.get_working_paths()[5] + "/" + i)
                 sleep(10)
             else:
@@ -44,6 +45,7 @@ def deleteoutofold():
     """
     Ich lösche alte Daten aus dem old Ordner. Dabei sind die Dateien mindestens ein Jahr alt.
     """
+        Maximales_Alter = 370 # in Tage
     try:
         log.addlog("delter.py deleteoutofold funktion läuft!", "DEBUG")
         while True:
@@ -58,7 +60,7 @@ def deleteoutofold():
                 for i in listold:
                     j = i[0:10].split("-")
                     j = int(j[0]) * 365 + int(j[1]) * 31 + int(j[2])
-                    if actual_time - 370 > j:
+                    if actual_time - Maximales_Alter > j:
                         rmtree(paths.get_working_paths()[5] + "/" + i)
                 sleep(10)
             else:
